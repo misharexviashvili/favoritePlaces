@@ -1,8 +1,8 @@
 class Place {
-  constructor(title, imageUri, adress, location) {
+  constructor(title, imageUri, address, location) {
     this.title = title;
     this.imageUri = imageUri;
-    this.adress = adress;
+    this.address = address;
     this.location = location; // {latitute: 777, longitude:999}
     this.id = new Date().toString() + Math.random().toString();
   }
