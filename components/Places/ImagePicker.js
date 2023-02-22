@@ -6,22 +6,18 @@ import {
   PermissionStatus,
 } from "expo-image-picker";
 import { useState } from "react";
-
 import { Colors } from "../../constants/colors";
+import OutlinedButton from "../UI/OutlinedButton";
 
 function ImagePicker() {
   const [pickedImage, setPickedImage] = useState();
-
   const [cameraPermissionInformation, requestPermission] =
     useCameraPermissions();
-
   async function verifyPermissions() {
     if (cameraPermissionInformation.status === PermissionStatus.UNDETERMINED) {
       const permissionResponse = await requestPermission();
-
       return permissionResponse.granted;
     }
-
     if (cameraPermissionInformation.status === PermissionStatus.DENIED) {
       Alert.alert(
         "Insufficient Permissions!",
@@ -29,17 +25,14 @@ function ImagePicker() {
       );
       return false;
     }
-
     return true;
   }
 
   async function takeImageHandler() {
     const hasPermission = await verifyPermissions();
-
     if (!hasPermission) {
       return;
     }
-
     const image = await launchCameraAsync({
       allowsEditing: true,
       aspect: [16, 9],
@@ -48,17 +41,16 @@ function ImagePicker() {
     console.log(image);
     setPickedImage(image.uri);
   }
-
   let imagePreview = <Text>No image taken yet.</Text>;
-
   if (pickedImage) {
     imagePreview = <Image style={styles.image} source={{ uri: pickedImage }} />;
   }
-
   return (
     <View>
       <View style={styles.imagePreview}>{imagePreview}</View>
-      <Button title="Take Image" onPress={takeImageHandler} />
+      <OutlinedButton onPress={takeImageHandler} icon="camera">
+        Take Image
+      </OutlinedButton>
     </View>
   );
 }
