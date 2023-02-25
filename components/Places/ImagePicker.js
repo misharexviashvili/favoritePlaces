@@ -29,8 +29,8 @@ function ImagePicker({ onTakeImage }) {
       quality: 0.5,
     });
     console.log(image);
-    setPickedImage(image.uri);
-    onTakeImage(image.uri);
+    setPickedImage('https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg?cs=srgb&dl=pexels-pixabay-533769.jpg&fm=jpg');
+    onTakeImage('https://images.pexels.com/photos/533769/pexels-photo-533769.jpeg?cs=srgb&dl=pexels-pixabay-533769.jpg&fm=jpg');
   }
   let imagePreview = <Text>No image taken yet.</Text>;
 
